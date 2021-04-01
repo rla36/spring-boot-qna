@@ -2,6 +2,7 @@ package com.codessquad.qna.web.service;
 
 import com.codessquad.qna.web.domain.Answer;
 import com.codessquad.qna.web.domain.Question;
+import com.codessquad.qna.web.domain.Result;
 import com.codessquad.qna.web.domain.User;
 import com.codessquad.qna.web.domain.repository.AnswerRepository;
 import com.codessquad.qna.web.exception.AnswerNotFoundException;
@@ -22,10 +23,10 @@ public class AnswerService {
         this.questionService = questionService;
     }
 
-    public void save(Long questionId, User sessionedUser, String contents) {
+    public Answer save(Long questionId, User sessionedUser, String contents) {
         Question question = questionService.findById(questionId);
         Answer answer = new Answer(question, sessionedUser, contents);
-        answerRepository.save(answer);
+        return answerRepository.save(answer);
     }
 
     public List<Answer> findByQuestionId(Long questionId) {
