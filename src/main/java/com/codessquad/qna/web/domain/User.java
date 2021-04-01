@@ -1,6 +1,7 @@
 package com.codessquad.qna.web.domain;
 
 import com.codessquad.qna.web.exception.UnauthorizedUserException;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -11,10 +12,12 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty
     private Long id;
 
     @Column(nullable = false)
     @NotBlank(message = "아이디는 필수 입력값입니다.")
+    @JsonProperty
     private String userId;
 
     @Column(nullable = false)

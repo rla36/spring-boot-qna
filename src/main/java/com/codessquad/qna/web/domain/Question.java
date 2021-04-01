@@ -1,6 +1,9 @@
 package com.codessquad.qna.web.domain;
 
 import com.codessquad.qna.web.utility.TimeConstant;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -12,11 +15,11 @@ public class Question {
 
     @Id
     @GeneratedValue
-
     private Long id;
 
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_question_writer"), nullable = false)
+    @JsonManagedReference
     private User writer;
 
     @Column(nullable = false, length = 20)
@@ -32,6 +35,7 @@ public class Question {
 
     @OneToMany(mappedBy = "question")
     @OrderBy("id ASC")
+    @JsonBackReference
     private List<Answer> answers;
 
     protected Question() {
