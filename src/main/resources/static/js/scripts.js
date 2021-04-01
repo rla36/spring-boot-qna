@@ -29,7 +29,7 @@ function onError() {
 function onSuccess(data) {
   console.log(data);
   var answerTemplate = $("#answerTemplate").html();
-  var template = answerTemplate.format(data.writer.name, data.formattedTimeCreated, data.contents, data.question.id, data.id);
+  var template = answerTemplate.format(data.writer.userId, data.formattedWrittenDateTime, data.contents, data.question.id, data.id);
   $(".qna-comment-slipp-articles").prepend(template);
   $("textarea[name=contents]").val("");
 }
@@ -51,7 +51,6 @@ function deleteAnswer(e) {
     success : function (data, status) {
       console.log("success");
       if (data.valid) {
-        // 삭제기능
         deleteButton.closest("article").remove();
       } else {
         alert(data.errorMessage);
