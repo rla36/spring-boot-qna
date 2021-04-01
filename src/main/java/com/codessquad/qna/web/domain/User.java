@@ -8,12 +8,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 
 @Entity
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonProperty
-    private Long id;
+public class User extends AbstractEntity {
 
     @Column(nullable = false)
     @NotBlank(message = "아이디는 필수 입력값입니다.")
@@ -39,10 +34,6 @@ public class User {
         this.password = password;
         this.name = name;
         this.email = email;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public String getUserId() {
@@ -89,18 +80,5 @@ public class User {
         if (!this.equals(sessionedUser)) {
             throw new UnauthorizedUserException(errorMessage);
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return userId.equals(user.userId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(userId);
     }
 }

@@ -18,11 +18,9 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/api/questions/{questionId}/answers")
 public class ApiAnswerController {
 
-    private QuestionService questionService;
     private AnswerService answerService;
 
-    private ApiAnswerController(QuestionService questionService, AnswerService answerService) {
-        this.questionService = questionService;
+    private ApiAnswerController(AnswerService answerService) {
         this.answerService = answerService;
     }
 
@@ -34,10 +32,6 @@ public class ApiAnswerController {
 
     @DeleteMapping("/{id}")
     public Result deleteAnswer(@PathVariable Long questionId, @PathVariable Long id, HttpSession session) {
-//        User user = session.getAttribute("sessionedUser");
-//        if( user == null) {
-//            return Result.fail("로그인하십시오");
-//        }
         try {
             User user = SessionUtility.findSessionedUser(session);
             answerService.delete(id, user);

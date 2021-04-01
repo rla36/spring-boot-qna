@@ -10,12 +10,7 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 @Entity
-public class Answer {
-
-    @Id
-    @GeneratedValue
-    @JsonProperty
-    private Long id;
+public class Answer extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_answer_to_question"))
@@ -33,20 +28,12 @@ public class Answer {
     @JsonProperty
     private String contents;
 
-    @Column
-    @JsonProperty
-    private LocalDateTime writtenDateTime = LocalDateTime.now();;
-
     protected Answer() {}
 
     public Answer(Question question, User writer, String contents) {
         this.question = question;
         this.writer = writer;
         this.contents = contents;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public Question getQuestion() {
@@ -59,10 +46,6 @@ public class Answer {
 
     public String getContents() {
         return contents;
-    }
-
-    public String getFormattedWrittenDateTime() {
-        return writtenDateTime.format(TimeConstant.DATE_PATTERN);
     }
 
     public void verifyWriter(User user) {

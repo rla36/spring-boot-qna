@@ -11,11 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-public class Question {
-
-    @Id
-    @GeneratedValue
-    private Long id;
+public class Question extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(foreignKey = @ForeignKey(name = "fk_question_writer"), nullable = false)
@@ -29,9 +25,6 @@ public class Question {
     @Column(nullable = false, length = 500)
     @NotBlank(message = "내용은 필수 입력값입니다.")
     private String contents;
-
-    @Column(nullable = false, length = 20)
-    private LocalDateTime writtenDateTime = LocalDateTime.now();
 
     @OneToMany(mappedBy = "question")
     @OrderBy("id ASC")
@@ -59,13 +52,6 @@ public class Question {
         return contents;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getFormattedWrittenDateTime() {
-        return writtenDateTime.format(TimeConstant.DATE_PATTERN);
-    }
 
     public void update(String title, String contents) {
         this.title = title;
