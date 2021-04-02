@@ -63,7 +63,6 @@ public class User extends AbstractEntity {
     }
 
     public void update(User newInfoUser) {
-        this.userId = newInfoUser.userId;
         this.name = newInfoUser.name;
         this.email = newInfoUser.email;
     }
