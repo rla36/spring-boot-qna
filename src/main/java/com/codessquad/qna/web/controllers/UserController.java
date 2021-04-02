@@ -4,6 +4,7 @@ import com.codessquad.qna.web.domain.User;
 import com.codessquad.qna.web.exception.UnauthorizedUserException;
 import com.codessquad.qna.web.service.UserService;
 import com.codessquad.qna.web.utility.SessionUtility;
+import org.hibernate.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

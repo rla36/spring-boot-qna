@@ -10,7 +10,7 @@ import java.util.Objects;
 @Entity
 public class User extends AbstractEntity {
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = false)
     @NotBlank(message = "아이디는 필수 입력값입니다.")
     @JsonProperty
     private String userId;

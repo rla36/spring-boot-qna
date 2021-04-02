@@ -23,7 +23,9 @@ function addAnswer(e) {
   });
 }
 
-function onError() {
+function onError(request, error) {
+  console.log("error");
+  alert("code:"+request.status+"\n"+"error:"+error+"\nMessage: 로그인하십시오."); // 에러원인 찾아내기
 }
 
 function onSuccess(data) {
